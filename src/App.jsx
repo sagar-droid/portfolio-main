@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./sections/Navbar";
-import Hero from "./sections/Hero";
-import ServiceSummary from "./sections/ServiceSummary";
-import Services from "./sections/Services";
 import ReactLenis from "lenis/react";
-import About from "./sections/About";
-import Works from "./sections/Works";
-import ContactSummary from "./sections/ContactSummary";
-import Contact from "./sections/Contact";
+import Home from "./pages/Home";
+import WorkDetail from "./pages/WorkDetail";
 import { useProgress } from "@react-three/drei";
 
 const App = () => {
   const { progress } = useProgress();
   const [isReady, setIsReady] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
 
   useEffect(() => {
-    if (progress === 100) {
+    if (!isHome || progress === 100) {
       setIsReady(true);
     }
-  }, [progress]);
+  }, [progress, isHome]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
@@ -41,13 +43,10 @@ const App = () => {
         } transition-opacity duration-1000`}
       >
         <Navbar />
-        <Hero />
-        <ServiceSummary />
-        <Services />
-        <About />
-        <Works />
-        <ContactSummary />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work/:slug" element={<WorkDetail />} />
+        </Routes>
       </div>
     </ReactLenis>
   );

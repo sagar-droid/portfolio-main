@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { socials } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const navRef = useRef(null);
@@ -14,6 +15,8 @@ const Navbar = () => {
   const iconTl = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showBurger, setShowBurger] = useState(true);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   useGSAP(() => {
     gsap.set(navRef.current, { xPercent: 100 });
     gsap.set([linksRef.current, contactRef.current], {
@@ -105,15 +108,25 @@ const Navbar = () => {
           {["home", "services", "about", "work", "contact"].map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
-                <Link
-                  className="transition-all duration-300 cursor-pointer hover:text-white"
-                  to={`${section}`}
-                  smooth
-                  offset={0}
-                  duration={2000}
-                >
-                  {section}
-                </Link>
+                {isHome ? (
+                  <ScrollLink
+                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    to={`${section}`}
+                    smooth
+                    offset={0}
+                    duration={2000}
+                  >
+                    {section}
+                  </ScrollLink>
+                ) : (
+                  <RouterLink
+                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    to="/"
+                    state={{ scrollTo: section }}
+                  >
+                    {section}
+                  </RouterLink>
+                )}
               </div>
             )
           )}

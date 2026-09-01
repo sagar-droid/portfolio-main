@@ -4,6 +4,7 @@ import { projects } from "../constants";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Link } from "react-router-dom";
 
 const Works = () => {
   const overlayRefs = useRef([]);
@@ -113,8 +114,9 @@ const Works = () => {
         onMouseMove={handleMouseMove}
       >
         {projects.map((project, index) => (
-          <div
+          <Link
             key={project.id}
+            to={`/work/${project.slug}`}
             id="project"
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
@@ -161,7 +163,7 @@ const Works = () => {
                 className="absolute bg-center px-14 rounded-xl"
               />
             </div>
-          </div>
+          </Link>
         ))}
         {/* desktop Flaoting preview image */}
         <div
