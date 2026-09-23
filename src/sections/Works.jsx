@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import Icon from "../components/Icon";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { projects } from "../constants";
 import { useRef, useState } from "react";
@@ -155,11 +155,15 @@ const Works = () => {
                 src={project.bgImage}
                 alt={`${project.name} background preview`}
                 className="object-cover w-full h-full rounded-md brightness-50"
+                loading="lazy"
+                decoding="async"
               />
               <img
                 src={project.image}
                 alt={`${project.name} featured preview`}
                 className="absolute bg-center px-14 rounded-xl"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </Link>

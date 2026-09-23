@@ -11,7 +11,7 @@ export function Planet(props) {
   const shapeContainer = useRef(null);
   const shperesContainer = useRef(null);
   const ringContainer = useRef(null);
-  const { nodes, materials } = useGLTF("/models/Planet.glb");
+  const { nodes, materials } = useGLTF("/models/Planet.glb", "/draco/");
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -47,34 +47,38 @@ export function Planet(props) {
   return (
     <group ref={shapeContainer} {...props} dispose={null}>
       <group ref={shperesContainer}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Sphere.geometry}
-          material={materials["Material.002"]}
-          rotation={[0, 0, 0.741]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Sphere2.geometry}
-          material={materials["Material.001"]}
-          position={[0.647, 1.03, -0.724]}
-          rotation={[0, 0, 0.741]}
-          scale={0.223}
-        />
+        {nodes?.Sphere && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Sphere.geometry}
+            material={materials["Material.002"]}
+            rotation={[0, 0, 0.741]}
+          />
+        )}
+        {nodes?.Sphere2 && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Sphere2.geometry}
+            material={materials["Material.001"]}
+            position={[0.647, 1.03, -0.724]}
+            rotation={[0, 0, 0.741]}
+            scale={0.223}
+          />
+        )}
       </group>
-      <mesh
-        ref={ringContainer}
-        castShadow
-        receiveShadow
-        geometry={nodes.Ring.geometry}
-        material={materials["Material.001"]}
-        rotation={[-0.124, 0.123, -0.778]}
-        scale={2}
-      />
+      {nodes?.Ring && (
+        <mesh
+          ref={ringContainer}
+          castShadow
+          receiveShadow
+          geometry={nodes.Ring.geometry}
+          material={materials["Material.001"]}
+          rotation={[-0.124, 0.123, -0.778]}
+          scale={2}
+        />
+      )}
     </group>
   );
 }
-
-useGLTF.preload("/models/Planet.glb");

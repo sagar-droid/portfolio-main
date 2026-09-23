@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import Icon from "./Icon";
 import gsap from "gsap";
 import { Observer } from "gsap/all";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(Observer);
 const Marquee = ({
   items,
@@ -10,8 +10,23 @@ const Marquee = ({
   iconClassName = "",
   reverse = false,
 }) => {
+  const [inView, setInView] = useState(false);
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   function horizontalLoop(items, config) {
     items = gsap.utils.toArray(items);
@@ -118,30 +133,41 @@ const Marquee = ({
   }
 
   useEffect(() => {
-    const tl = horizontalLoop(itemsRef.current, {
-      repeat: -1,
-      paddingRight: 30,
-      reversed: reverse,
+    if (!inView || itemsRef.current.length === 0) return;
+
+    let tl;
+    let observerInstance;
+    const rafId = requestAnimationFrame(() => {
+      tl = horizontalLoop(itemsRef.current, {
+        repeat: -1,
+        paddingRight: 30,
+        reversed: reverse,
+      });
+
+      observerInstance = Observer.create({
+        onChangeY(self) {
+          let factor = 2.5;
+          if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
+            factor *= -1;
+          }
+          gsap
+            .timeline({
+              defaults: {
+                ease: "none",
+              },
+            })
+            .to(tl, { timeScale: factor * 2.5, duration: 0.2, overwrite: true })
+            .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
+        },
+      });
     });
 
-    Observer.create({
-      onChangeY(self) {
-        let factor = 2.5;
-        if ((!reverse && self.deltaY < 0) || (reverse && self.deltaY > 0)) {
-          factor *= -1;
-        }
-        gsap
-          .timeline({
-            defaults: {
-              ease: "none",
-            },
-          })
-          .to(tl, { timeScale: factor * 2.5, duration: 0.2, overwrite: true })
-          .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
-      },
-    });
-    return () => tl.kill();
-  }, [items, reverse]);
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (tl) tl.kill();
+      if (observerInstance) observerInstance.kill();
+    };
+  }, [inView, items, reverse]);
   return (
     <div
       ref={containerRef}

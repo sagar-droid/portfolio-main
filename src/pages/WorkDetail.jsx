@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import Icon from "../components/Icon";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { projects } from "../constants";
