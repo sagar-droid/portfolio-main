@@ -52,6 +52,9 @@ const About = () => {
           ref={imgRef}
           src="/images/man.jpg"
           alt="Sagar Adhikari - Full-Stack Developer"
+          width="448"
+          height="672"
+          loading="lazy"
           className="w-md rounded-3xl"
         />
         <AnimatedTextLines text={aboutText} className={"w-full"} />

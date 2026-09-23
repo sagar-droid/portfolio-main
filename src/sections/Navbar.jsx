@@ -115,7 +115,7 @@ const Navbar = () => {
                     smooth
                     offset={0}
                     duration={2000}
-                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    className="transition-colors duration-300 cursor-pointer hover:text-white"
                     onClick={() => {
                       if (isOpen) toggleMenu();
                     }}
@@ -126,7 +126,7 @@ const Navbar = () => {
                   <RouterLink
                     to={`/#${section}`}
                     state={{ scrollTo: section }}
-                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    className="transition-colors duration-300 cursor-pointer hover:text-white"
                     onClick={() => {
                       if (isOpen) toggleMenu();
                     }}

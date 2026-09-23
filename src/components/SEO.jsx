@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const BASE_URL = "https://sagaradhikari.com.np";
+const BASE_URL = "https://sagaradhikari.vercel.app";
 const DEFAULT_TITLE = "Sagar Adhikari | Full-Stack Developer & Creative Technologist";
 const DEFAULT_DESCRIPTION =
   "Portfolio of Sagar Adhikari, a Full-Stack Developer crafting high-performance, modern web applications, scalable architectures, and interactive digital experiences.";
