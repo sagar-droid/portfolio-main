@@ -25,22 +25,23 @@ const AnimatedHeaderSection = ({
           }
         : undefined,
     });
-    tl.from(contextRef.current, {
-      y: "50vh",
-      duration: 1,
-      ease: "circ.out",
-    });
+    if (withScrollTrigger) {
+      tl.from(contextRef.current, {
+        y: "30vh",
+        duration: 0.8,
+        ease: "power2.out",
+      });
+    }
     tl.from(
       headerRef.current,
       {
-        opacity: 0,
-        y: "200",
-        duration: 1,
+        y: "100%",
+        duration: 0.8,
         ease: "circ.out",
       },
-      "<+0.2"
+      withScrollTrigger ? "<+0.2" : 0
     );
-  }, []);
+  }, [withScrollTrigger]);
   return (
     <div ref={contextRef}>
       <div style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}>

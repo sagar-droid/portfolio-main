@@ -93,7 +93,7 @@ export const projects = [
     role: "Full-Stack Developer",
     href: "",
     image: "/assets/projects/ev/ev5.webp",
-    bgImage: "/assets/backgrounds/blanket.jpg",
+    bgImage: "/assets/backgrounds/blanket.webp",
     gallery: [
       "/assets/projects/ev/ev1.webp",
       "/assets/projects/ev/ev2.webp",
@@ -150,7 +150,7 @@ export const projects = [
     role: "Full-Stack Developer",
     href: "",
     image: "/assets/projects/kanooniastra/kanoon1.webp",
-    bgImage: "/assets/backgrounds/curtains.jpg",
+    bgImage: "/assets/backgrounds/curtains.webp",
     gallery: [
       "/assets/projects/kanooniastra/kanoon2.webp",
       "/assets/projects/kanooniastra/kanoon3.webp",
@@ -203,7 +203,7 @@ export const projects = [
     role: "Full-Stack Developer",
     href: "",
     image: "/assets/projects/academics/aca1.webp",
-    bgImage: "/assets/backgrounds/map.jpg",
+    bgImage: "/assets/backgrounds/map.webp",
     gallery: [
       "/assets/projects/academics/aca2.webp",
       "/assets/projects/academics/aca3.webp",
@@ -261,7 +261,7 @@ export const projects = [
     role: "Full-Stack Developer",
     href: "",
     image: "/assets/projects/inventory/invent1.webp",
-    bgImage: "/assets/backgrounds/poster.jpg",
+    bgImage: "/assets/backgrounds/poster.webp",
     gallery: [
       "/assets/projects/inventory/invent2.webp",
       "/assets/projects/inventory/invent3.webp",
@@ -315,7 +315,7 @@ export const projects = [
     role: "Full-Stack Developer",
     href: "",
     image: "/assets/projects/exceltojson/excel1.webp",
-    bgImage: "/assets/backgrounds/table.jpg",
+    bgImage: "/assets/backgrounds/table.webp",
     gallery: [
       "/assets/projects/exceltojson/excel2.webp",
       "/assets/projects/exceltojson/excel3.webp",

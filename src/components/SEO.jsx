@@ -4,7 +4,7 @@ const BASE_URL = "https://sagaradhikari.vercel.app";
 const DEFAULT_TITLE = "Sagar Adhikari | Full-Stack Developer & Creative Technologist";
 const DEFAULT_DESCRIPTION =
   "Portfolio of Sagar Adhikari, a Full-Stack Developer crafting high-performance, modern web applications, scalable architectures, and interactive digital experiences.";
-const DEFAULT_IMAGE = `${BASE_URL}/images/man.jpg`;
+const DEFAULT_IMAGE = `${BASE_URL}/images/man.webp`;
 
 const updateMetaTag = (selector, attribute, value) => {
   let element = document.querySelector(selector);
