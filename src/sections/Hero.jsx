@@ -15,6 +15,7 @@ results driven webs/apps`;
         title={"Sagar Adhikari"}
         text={text}
         textColor={"text-black"}
+        headingTag="h1"
       />
       <figure
         className="absolute inset-0 -z-50"

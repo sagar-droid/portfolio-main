@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { projects } from "../constants";
 import ContactSummary from "../sections/ContactSummary";
+import SEO from "../components/SEO";
 
 const WorkDetail = () => {
   const { slug } = useParams();
@@ -38,11 +39,20 @@ const WorkDetail = () => {
 
   return (
     <div ref={containerRef} className="flex flex-col text-black">
+      <SEO
+        title={`${project.name} | Sagar Adhikari`}
+        description={project.description || project.overview}
+        image={project.image}
+        path={`/work/${project.slug}`}
+        type="article"
+      />
       {/* hero */}
       <section className="relative flex flex-col justify-end min-h-[70vh] px-6 pt-32 pb-16 overflow-hidden sm:px-10">
         <img
           src={project.bgImage}
           alt=""
+          role="presentation"
+          aria-hidden="true"
           className="absolute inset-0 object-cover w-full h-full -z-10 brightness-[0.35]"
         />
         <Link
@@ -108,7 +118,7 @@ const WorkDetail = () => {
               <a
                 href={project.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-light underline underline-offset-4 hover:opacity-70"
               >
                 Visit project
@@ -123,7 +133,7 @@ const WorkDetail = () => {
       <section data-reveal className="px-6 sm:px-10">
         <img
           src={project.image}
-          alt={project.name}
+          alt={`${project.name} showcase preview`}
           className="w-full rounded-md h-[300px] sm:h-[480px] object-cover"
         />
       </section>
@@ -179,7 +189,7 @@ const WorkDetail = () => {
                 data-reveal
                 key={index}
                 src={src}
-                alt={`${project.name}-${index}`}
+                alt={`${project.name} gallery screenshot ${index + 1}`}
                 className="object-cover w-full rounded-md h-72"
               />
             ))}

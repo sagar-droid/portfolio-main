@@ -9,11 +9,14 @@ const AnimatedHeaderSection = ({
   text,
   textColor,
   withScrollTrigger = false,
+  headingTag = "h2",
 }) => {
   const contextRef = useRef(null);
   const headerRef = useRef(null);
   const shouldSplitTitle = title.includes(" ");
   const titleParts = shouldSplitTitle ? title.split(" ") : [title];
+  const HeadingComponent = headingTag === "h1" ? "h1" : "h2";
+
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: withScrollTrigger
@@ -51,13 +54,13 @@ const AnimatedHeaderSection = ({
             {subTitle}
           </p>
           <div className="px-10">
-            <h1
+            <HeadingComponent
               className={`flex flex-col gap-12 uppercase banner-text-responsive sm:gap-16 md:block ${textColor}`}
             >
               {titleParts.map((part, index) => (
                 <span key={index}>{part} </span>
               ))}
-            </h1>
+            </HeadingComponent>
           </div>
         </div>
       </div>

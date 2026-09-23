@@ -110,19 +110,26 @@ const Navbar = () => {
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
                 {isHome ? (
                   <ScrollLink
-                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    href={`#${section}`}
                     to={`${section}`}
                     smooth
                     offset={0}
                     duration={2000}
+                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    onClick={() => {
+                      if (isOpen) toggleMenu();
+                    }}
                   >
                     {section}
                   </ScrollLink>
                 ) : (
                   <RouterLink
-                    className="transition-all duration-300 cursor-pointer hover:text-white"
-                    to="/"
+                    to={`/#${section}`}
                     state={{ scrollTo: section }}
+                    className="transition-all duration-300 cursor-pointer hover:text-white"
+                    onClick={() => {
+                      if (isOpen) toggleMenu();
+                    }}
                   >
                     {section}
                   </RouterLink>
@@ -148,6 +155,9 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow on ${social.name}`}
                   className="text-sm leading-loose tracking-widest uppercase hover:text-white transition-colors duration-300"
                 >
                   {"{ "}
@@ -159,8 +169,11 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div
-        className="fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 bg-black rounded-full cursor-pointer w-14 h-14 md:w-20 md:h-20 top-4 right-10"
+      <button
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded={isOpen}
+        className="fixed z-50 flex flex-col items-center justify-center gap-1 transition-all duration-300 bg-black rounded-full cursor-pointer w-14 h-14 md:w-20 md:h-20 top-4 right-10 border-0 focus:outline-none focus:ring-2 focus:ring-white/40"
         onClick={toggleMenu}
         style={
           showBurger
@@ -176,7 +189,7 @@ const Navbar = () => {
           ref={bottomLineRef}
           className="block w-8 h-0.5 bg-white rounded-full origin-center"
         ></span>
-      </div>
+      </button>
     </>
   );
 };

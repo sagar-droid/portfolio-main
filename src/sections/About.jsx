@@ -41,7 +41,7 @@ const About = () => {
   return (
     <section id="about" className="min-h-screen bg-black rounded-b-4xl">
       <AnimatedHeaderSection
-        subTitle={"Cod with purpose, Built to scale"}
+        subTitle={"Code with purpose, Built to scale"}
         title={"About"}
         text={text}
         textColor={"text-white"}
@@ -50,8 +50,8 @@ const About = () => {
       <div className="flex flex-col items-center justify-between gap-16 px-10 pb-16 text-xl font-light tracking-wide lg:flex-row md:text-2xl lg:text-3xl text-white/60">
         <img
           ref={imgRef}
-          src="images/man.jpg"
-          alt="man"
+          src="/images/man.jpg"
+          alt="Sagar Adhikari - Full-Stack Developer"
           className="w-md rounded-3xl"
         />
         <AnimatedTextLines text={aboutText} className={"w-full"} />

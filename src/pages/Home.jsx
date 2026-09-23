@@ -8,6 +8,7 @@ import Services from "../sections/Services";
 import About from "../sections/About";
 import ContactSummary from "../sections/ContactSummary";
 import Contact from "../sections/Contact";
+import SEO from "../components/SEO";
 
 const Home = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const Home = () => {
 
   return (
     <>
+      <SEO path="/" />
       <Hero />
       <Works />
       <ServiceSummary />

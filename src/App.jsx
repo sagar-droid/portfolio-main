@@ -16,6 +16,13 @@ const App = () => {
     if (!isHome || progress === 100) {
       setIsReady(true);
     }
+
+    // Safety fallback: reveal page after 2.5s even if 3D loader or WebGL hangs
+    const timeout = setTimeout(() => {
+      setIsReady(true);
+    }, 2500);
+
+    return () => clearTimeout(timeout);
   }, [progress, isHome]);
 
   useEffect(() => {

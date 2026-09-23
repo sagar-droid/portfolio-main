@@ -29,7 +29,7 @@ const Works = () => {
       ease: "power3.out",
     });
 
-    gsap.from("#project", {
+    gsap.from(".project-card", {
       y: 100,
       opacity: 0,
       delay: 0.5,
@@ -37,7 +37,7 @@ const Works = () => {
       stagger: 0.3,
       ease: "back.out",
       scrollTrigger: {
-        trigger: "#project",
+        trigger: ".project-card",
       },
     });
   }, []);
@@ -117,8 +117,7 @@ const Works = () => {
           <Link
             key={project.id}
             to={`/work/${project.slug}`}
-            id="project"
-            className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
+            className="project-card relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
           >
@@ -154,12 +153,12 @@ const Works = () => {
             <div className="relative flex items-center justify-center px-10 md:hidden h-[400px]">
               <img
                 src={project.bgImage}
-                alt={`${project.name}-bg-image`}
+                alt={`${project.name} background preview`}
                 className="object-cover w-full h-full rounded-md brightness-50"
               />
               <img
                 src={project.image}
-                alt={`${project.name}-image`}
+                alt={`${project.name} featured preview`}
                 className="absolute bg-center px-14 rounded-xl"
               />
             </div>
@@ -173,7 +172,7 @@ const Works = () => {
           {currentIndex !== null && (
             <img
               src={projects[currentIndex].image}
-              alt="preview"
+              alt={`${projects[currentIndex].name} interactive preview`}
               className="object-cover w-full h-full"
             />
           )}

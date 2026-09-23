@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sagaradhikari.com.np
+
+# Sitemaps
+Sitemap: https://sagaradhikari.com.np/sitemap.xml
